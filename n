@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>피드백 안내 페이지</title>
+  <style>
+    body { font-family: 'Noto Sans KR', sans-serif; padding: 2em; max-width: 600px; margin: auto; }
+    input, button { padding: 0.5em; font-size: 1em; }
+    #result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>👥 피드백 안내</h1>
+  <p>자신의 이름을 입력하면, 피드백해야 할 사람이 누구인지 확인할 수 있어요.</p>
+  
+  <input type="text" id="nameInput" placeholder="이름을 입력하세요 (예: 김정민)">
+  <button onclick="showFeedback()">확인</button>
+  
+  <div id="result"></div>
+
+  <script>
+    const feedbackData = {
+      "김정민": ["재윤(힐데)", "안형연(요니)"],
+      "수연(코덕픽)": ["김정민", "민호"],
+      "안형연(요니)": ["예린(린딩동)", "민혁(알피)"],
+      "예린(린딩동)": ["재윤(힐데)", "안형연(요니)"],
+      "민호": ["김정민", "한슬(동원참치)"],
+      "재윤(힐데)": ["민호", "예린(린딩동)"],
+      "민혁(알피)": ["수연(코덕픽)", "한슬(동원참치)"],
+      "한슬(동원참치)": ["수연(코덕픽)", "민혁(알피)"]
+    };
+
+    function showFeedback() {
+      const name = document.getElementById("nameInput").value.trim();
+      const resultDiv = document.getElementById("result");
+
+      if (feedbackData[name]) {
+        const list = feedbackData[name].map(person => `- ${person}`).join("<br>");
+        resultDiv.innerHTML = `<p><strong>${name}</strong>님이 피드백해야 할 사람은:</p><p>${list}</p>`;
+      } else {
+        resultDiv.innerHTML = `<p>입력하신 이름을 찾을 수 없습니다. 정확히 입력해 주세요.</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
