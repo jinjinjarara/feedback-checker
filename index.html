@@ -21,26 +21,29 @@
   <script>
     const feedbackData = {
       "김정민": ["재윤(힐데)", "안형연(요니)"],
-      "수연(코덕픽)": ["김정민", "민호"],
+      "이수연(코덕픽)": ["김정민", "민호(익발)"],
       "안형연(요니)": ["예린(린딩동)", "민혁(알피)"],
-      "예린(린딩동)": ["재윤(힐데)", "안형연(요니)"],
-      "민호": ["김정민", "한슬(동원참치)"],
-      "재윤(힐데)": ["민호", "예린(린딩동)"],
-      "민혁(알피)": ["수연(코덕픽)", "한슬(동원참치)"],
-      "한슬(동원참치)": ["수연(코덕픽)", "민혁(알피)"]
+      "윤예린(린딩동)": ["재윤(힐데)", "안형연(요니)"],
+      "예민호(익발)": ["김정민", "한슬(동원참치)"],
+      "허재윤(힐데)": ["민호(익발)", "예린(린딩동)"],
+      "이민혁(알피)": ["수연(코덕픽)", "한슬(동원참치)"],
+      "김한슬(동원참치)": ["수연(코덕픽)", "민혁(알피)"]
     };
 
-    function showFeedback() {
-      const name = document.getElementById("nameInput").value.trim();
-      const resultDiv = document.getElementById("result");
+function showFeedback() {
+  const name = document.getElementById("nameInput").value.trim();
+  const resultDiv = document.getElementById("result");
 
-      if (feedbackData[name]) {
-        const list = feedbackData[name].map(person => `- ${person}`).join("<br>");
-        resultDiv.innerHTML = `<p><strong>${name}</strong>님이 피드백해야 할 사람은:</p><p>${list}</p>`;
-      } else {
-        resultDiv.innerHTML = `<p>입력하신 이름을 찾을 수 없습니다. 정확히 입력해 주세요.</p>`;
-      }
-    }
+  const matchedKey = Object.keys(feedbackData).find(key => key.includes(name));
+
+  if (matchedKey) {
+    const list = feedbackData[matchedKey].map(person => `- ${person}`).join("<br>");
+    resultDiv.innerHTML = `<p><strong>${matchedKey}</strong>님이 피드백해야 할 사람은:</p><p>${list}</p>`;
+  } else {
+    resultDiv.innerHTML = `<p>입력하신 이름을 찾을 수 없습니다. 정확히 입력해 주세요.</p>`;
+  }
+}
+
   </script>
 </body>
 </html>
